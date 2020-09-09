@@ -121,7 +121,7 @@ func main() {
 func LoopForever() {
 	fmt.Printf("Entering infinite loop\n")
 
-	signal.Notify(OsSignal, syscall.SIGINT, syscall.SIGTERM, syscall.SIGUSR1)
+	signal.Notify(OsSignal, syscall.SIGINT, syscall.SIGTERM) // oh Windows.. removed syscall.SIGUSR1
 	_ = <-OsSignal
 
 	fmt.Printf("Exiting infinite loop received OsSignal\n")
