@@ -880,24 +880,24 @@ func GoFmt(codeDir string) (string, error) {
 
 func generateProjectFiles(conf *dbmeta.Config, data map[string]interface{}) (err error) {
 
-	var GitIgnoreTmpl *dbmeta.GenTemplate
+	/*var GitIgnoreTmpl *dbmeta.GenTemplate
 	if GitIgnoreTmpl, err = LoadTemplate("gitignore.tmpl"); err != nil {
 		fmt.Print(au.Red(fmt.Sprintf("Error loading template %v\n", err)))
 		return
-	}
+	}*/
 	var ReadMeTmpl *dbmeta.GenTemplate
 	if ReadMeTmpl, err = LoadTemplate("README.md.tmpl"); err != nil {
 		fmt.Print(au.Red(fmt.Sprintf("Error loading template %v\n", err)))
 		return
 	}
 	populateProtoCinContext(conf, data)
-	err = conf.WriteTemplate(GitIgnoreTmpl, data, filepath.Join(*outDir, ".gitignore"))
+	/*err = conf.WriteTemplate(GitIgnoreTmpl, data, filepath.Join(*outDir, ".gitignore"))
 	if err != nil {
 		fmt.Print(au.Red(fmt.Sprintf("Error writing file: %v\n", err)))
 		os.Exit(1)
-	}
+	}*/
 
-	err = conf.WriteTemplate(ReadMeTmpl, data, filepath.Join(*outDir, "README.md"))
+	err = conf.WriteTemplate(ReadMeTmpl, data, filepath.Join(filepath.Join(*outDir, "docs"), "README.md"))
 	if err != nil {
 		fmt.Print(au.Red(fmt.Sprintf("Error writing file: %v\n", err)))
 		os.Exit(1)
